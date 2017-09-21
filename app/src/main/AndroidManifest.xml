@@ -19,6 +19,15 @@
             </intent-filter>
         </activity>
 
+        <service
+                android:name=".services.StupidService"
+                android:enabled="true"
+                android:exported="true">>
+            <intent-filter>
+                <action android:name="ubcorbit.org.testapp.services.StupidService" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>
