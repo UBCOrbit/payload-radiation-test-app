@@ -14,7 +14,6 @@ import java.io.FileOutputStream;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
-    private Button testButton;
     private int counter = 0;
 
     @Override
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testButton = (Button) findViewById(R.id.test_button);
+        Button testButton = (Button) findViewById(R.id.test_button);
         testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
