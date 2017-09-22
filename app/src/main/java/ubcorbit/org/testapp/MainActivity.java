@@ -1,9 +1,11 @@
 package ubcorbit.org.testapp;
 
+import android.content.Intent;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import ubcorbit.org.testapp.services.MemoryTestService;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,9 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // todo:
-        // launch test manager here
 
     }
 

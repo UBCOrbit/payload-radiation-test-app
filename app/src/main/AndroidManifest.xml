@@ -19,14 +19,21 @@
             </intent-filter>
         </activity>
 
-        <service
-                android:name=".services.MemoryTestService"
-                android:enabled="true"
-                android:exported="true">>
-            <intent-filter>
-                <action android:name="ubcorbit.org.testapp.services.MemoryTestService" />
-            </intent-filter>
-        </service>
+        <service android:name=".services.CardWriteService"
+                 android:enabled="true"
+                 android:exported="true"/>
+
+        <service android:name=".services.CardReadService"
+                 android:enabled="true"
+                 android:exported="true"/>
+
+        <service android:name=".services.MemoryTestService"
+                 android:enabled="true"
+                 android:exported="true"/>
+
+        <service android:name=".services.RAMFillerService"
+                 android:enabled="true"
+                 android:exported="true"/>
 
     </application>
 

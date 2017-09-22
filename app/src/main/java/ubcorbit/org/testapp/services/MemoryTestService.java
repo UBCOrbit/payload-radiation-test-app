@@ -1,5 +1,6 @@
 package ubcorbit.org.testapp.services;
 
+import android.app.IntentService;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -7,24 +8,36 @@ import android.util.Log;
 
 import java.util.Random;
 
-public class MemoryTestService extends Service {
+public class MemoryTestService extends IntentService {
 
+    private static int instanceCount = 0;
     private static String TAG = "orbitMemTestService";
 
+    public MemoryTestService() {
+        super("MemoryTestService (" + Integer.toString(instanceCount++) + ")");
+    }
+
+    @Override
+    protected void onHandleIntent(Intent intent) {
+        Log.i(TAG, "onHandleIntent()");
+    }
+
     public static int incrementCounter(int n) {
+
         int total = 0;
         for (int i = 0; i < n; i++) {
             total += n;
         }
+
         return total;
     }
 
     /**
      * @param size: bytes to write
      * @param time: milliseconds to switch between writing and checking
-     * @return
+     * @return # errors
      */
-    public static int allocate_and_check_ram(int size, int time) {
+    private static int allocateAndCheckRam(int size, int time) {
 
         byte[] array = new byte[size];
         for (int i = 0; i < size; i++) {
@@ -64,7 +77,7 @@ public class MemoryTestService extends Service {
 
     }
 
-    public static int random_accesses(int array_size, int accesses, int delay) {
+    private static int randomAccesses(int array_size, int accesses, int delay) {
 
         Random rng = new Random();
 
@@ -85,16 +98,4 @@ public class MemoryTestService extends Service {
 
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "MemoryTestService.onStartCommand");
-        int num_errors = allocate_and_check_ram(1000000, 10000);
-        Log.d(TAG, "done, num_errors = " + Integer.toString(num_errors));
-        return Service.START_NOT_STICKY;
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
 }
