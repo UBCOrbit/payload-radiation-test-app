@@ -14,22 +14,14 @@ public class StartupService extends Service {
 
     @Override
     public void onCreate() {
-
         super.onCreate();
         Log.i(TAG, "onCreate()");
-
-        Intent recordIntent = new Intent(getBaseContext(), FileAppenderService.class);
-        recordIntent.putExtra(FileAppenderService.ITAG_CONTENT, "sdfsrh");
-        recordIntent.putExtra(FileAppenderService.ITAG_FILENAME, "log.txt");
-        startService(recordIntent);
 
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
         Log.i(TAG, "onStartCommand()");
-
         return super.onStartCommand(intent, flags, startId);
     }
 
