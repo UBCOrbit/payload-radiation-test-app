@@ -21,10 +21,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent i = new Intent(this, IncrementService.class);
-        i.putExtra(IncrementService.ITAG_COUNT, 100000);
-        startService(i);
-
         Log.i(TAG, "done");
 
     }
