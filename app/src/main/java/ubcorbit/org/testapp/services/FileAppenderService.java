@@ -18,7 +18,7 @@ public class FileAppenderService extends IntentService{
     private static String TAG = "orbitFileAppenderSe";
 
     public FileAppenderService() {
-        super("FileAppenderService (" + Integer.toString(instanceCount++) + ")");
+        super("FileAppenderService (" + Integer.toString(++instanceCount) + ")");
     }
 
     @Override

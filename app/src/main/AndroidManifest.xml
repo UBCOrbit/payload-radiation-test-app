@@ -32,7 +32,15 @@
                  android:enabled="true"
                  android:exported="true"/>
 
-        <service android:name=".services.MemoryTestService"
+        <service android:name=".services.AllocateCheckService"
+                 android:enabled="true"
+                 android:exported="true"/>
+
+        <service android:name=".services.IncrementService"
+                 android:enabled="true"
+                 android:exported="true"/>
+
+        <service android:name=".services.RandomAccessService"
                  android:enabled="true"
                  android:exported="true"/>
 

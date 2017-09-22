@@ -12,7 +12,7 @@ public class CardReadService extends IntentService {
     private static String TAG = "orbitCardReadSe";
 
     public CardReadService() {
-        super("CardReadService (" + Integer.toString(instanceCount++) + ")");
+        super("CardReadService (" + Integer.toString(++instanceCount) + ")");
     }
 
     @Override

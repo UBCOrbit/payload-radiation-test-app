@@ -12,7 +12,7 @@ public class RAMFillerService extends IntentService {
     private static String TAG = "orbitRAMFillerSe";
 
     public RAMFillerService() {
-        super("RAMFillerService (" + Integer.toString(instanceCount++) + ")");
+        super("RAMFillerService (" + Integer.toString(++instanceCount) + ")");
     }
 
     @Override
