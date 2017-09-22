@@ -20,11 +20,11 @@
         </activity>
 
         <service
-                android:name=".services.StupidService"
+                android:name=".services.MemoryTestService"
                 android:enabled="true"
                 android:exported="true">>
             <intent-filter>
-                <action android:name="ubcorbit.org.testapp.services.StupidService" />
+                <action android:name="ubcorbit.org.testapp.services.MemoryTestService" />
             </intent-filter>
         </service>
 

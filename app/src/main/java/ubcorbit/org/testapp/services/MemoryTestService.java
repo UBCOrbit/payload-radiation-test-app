@@ -7,9 +7,9 @@ import android.util.Log;
 
 import java.util.Random;
 
-public class StupidService extends Service {
+public class MemoryTestService extends Service {
 
-    private static String TAG = "StupidService";
+    private static String TAG = "orbitMemTestService";
 
     public static int incrementCounter(int n) {
         int total = 0;
@@ -87,7 +87,7 @@ public class StupidService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "StupidService.onStartCommand");
+        Log.d(TAG, "MemoryTestService.onStartCommand");
         int num_errors = allocate_and_check_ram(1000000, 10000);
         Log.d(TAG, "done, num_errors = " + Integer.toString(num_errors));
         return Service.START_NOT_STICKY;
