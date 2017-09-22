@@ -67,10 +67,8 @@ public class FileAppenderService extends IntentService{
 
     private File getStorageDir() {
 
-        File dir = new File(Environment.getExternalStoragePublicDirectory(
+        return new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_DOWNLOADS), "TestApp");
-        if (!dir.mkdirs()) Log.e(TAG, "storage directory not created");
-        return dir;
 
     }
 

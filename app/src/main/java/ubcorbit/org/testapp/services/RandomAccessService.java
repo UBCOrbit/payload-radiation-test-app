@@ -1,9 +1,7 @@
 package ubcorbit.org.testapp.services;
 
 import android.app.IntentService;
-import android.app.Service;
 import android.content.Intent;
-import android.os.IBinder;
 import android.util.Log;
 
 import java.util.Random;
@@ -13,7 +11,15 @@ public class RandomAccessService extends IntentService {
     private static int instanceCount = 0;
     private static int handleCount = 0;
     private static String TAG = "orbitRandomAccSe";
-    private static String RECORD_NAME = "random-access.log";
+    private static String RECORD_NAME = "random-access.txt";
+
+    public static String ITAG_ACCESSES = "accesses";
+    public static String ITAG_ARRAY = "array";
+    public static String ITAG_DELAY = "delay";
+
+    private static final int DEF_ACCESSES = 10000;
+    private static final int DEF_ARRAY = 1000000;
+    private static final int DEF_DELAY = 1000;
 
     public RandomAccessService() {
         super("RandomAccessService (" + Integer.toString(++instanceCount) + ")");
@@ -26,18 +32,25 @@ public class RandomAccessService extends IntentService {
 
         Log.i(TAG, String.format("onHandleIntent() (%d)", callId));
 
-        int accesses = 1000;
-        int array_size = 1000000;
-        int delay = 1000;
+        int accesses = (intent.getIntExtra(ITAG_ACCESSES, DEF_ACCESSES));
+        int array_size = (intent.getIntExtra(ITAG_ARRAY, DEF_ARRAY));
+        int delay = (intent.getIntExtra(ITAG_DELAY, DEF_DELAY));
 
         int errors = randomAccesses(array_size, accesses, delay);
 
         Log.i(TAG, String.format("callId = %d, errors = %d / %d", callId, errors, accesses));
-        // todo: log to file
+
+        String log = String.format("(%d) : e = %d, a = %d, m = %d, d = %d", callId, errors, accesses, array_size, delay);
+        Intent recordIntent = new Intent(this, FileAppenderService.class);
+        recordIntent.putExtra(FileAppenderService.ITAG_CONTENT, log);
+        recordIntent.putExtra(FileAppenderService.ITAG_FILENAME, RECORD_NAME);
+        startService(recordIntent);
 
     }
 
     private int randomAccesses(int array_size, int accesses, int delay) {
+
+        Log.i(TAG, "randomAccess()");
 
         Random rng = new Random();
 
@@ -54,7 +67,7 @@ public class RandomAccessService extends IntentService {
 
         int errors = 0;
         for (int i = 0; i < accesses; i++) {
-            int next = rng.nextInt();
+            int next = rng.nextInt(array_size);
             if (array[next] != next) {
                 errors++;
             }

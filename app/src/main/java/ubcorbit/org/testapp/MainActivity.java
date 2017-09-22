@@ -10,7 +10,7 @@ import ubcorbit.org.testapp.services.RandomAccessService;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "orbitMainAc";
-    private static String RECORD_NAME = "main-activity.log";
+    private static String RECORD_NAME = "main-activity.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,14 +20,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // todo start test services
-
-        Intent i = new Intent(this, FileAppenderService.class);
-        i.putExtra(FileAppenderService.ITAG_FILENAME, RECORD_NAME);
-        i.putExtra(FileAppenderService.ITAG_CONTENT, "hello");
-        startService(i);
-
         Intent i2 = new Intent(this, RandomAccessService.class);
+        i2.putExtra(RandomAccessService.ITAG_ARRAY, 1000000);
+        i2.putExtra(RandomAccessService.ITAG_ACCESSES, 10000);
         startService(i2);
 
     }
