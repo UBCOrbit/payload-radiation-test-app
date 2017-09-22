@@ -16,6 +16,8 @@ public class FileAppenderService extends IntentService{
 
     private static int instanceCount = 0;
     private static String TAG = "orbitFileAppenderSe";
+    public static String ITAG_CONTENT = "content";
+    public static String ITAG_FILENAME = "filename";
 
     public FileAppenderService() {
         super("FileAppenderService (" + Integer.toString(++instanceCount) + ")");
@@ -23,10 +25,18 @@ public class FileAppenderService extends IntentService{
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        // todo: read intent and call methods
+
+        String content = intent.getStringExtra(ITAG_CONTENT);
+        String filename = intent.getStringExtra(ITAG_FILENAME);
+        if(content != null && filename != null) {
+            appendStringToFile(content, filename);
+        }
+
     }
 
     private void appendStringToFile(String content, String fileName) {
+
+        Log.i(TAG, "appendStringToFile()");
 
         if(isExternalStorageWritable()) {
 

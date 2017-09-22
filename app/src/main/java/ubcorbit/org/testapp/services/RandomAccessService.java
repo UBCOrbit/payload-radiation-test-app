@@ -13,6 +13,7 @@ public class RandomAccessService extends IntentService {
     private static int instanceCount = 0;
     private static int handleCount = 0;
     private static String TAG = "orbitRandomAccSe";
+    private static String RECORD_NAME = "random-access.log";
 
     public RandomAccessService() {
         super("RandomAccessService (" + Integer.toString(++instanceCount) + ")");
