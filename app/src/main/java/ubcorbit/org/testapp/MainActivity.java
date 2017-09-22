@@ -1,8 +1,10 @@
 package ubcorbit.org.testapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import ubcorbit.org.testapp.services.AllocateCheckService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,15 +14,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Log.d(TAG, "onCreate()");
+        Log.i(TAG, "onCreate()");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        Intent i2 = new Intent(this, RandomAccessService.class);
-//        i2.putExtra(RandomAccessService.ITAG_ARRAY, 1000000);
-//        i2.putExtra(RandomAccessService.ITAG_ACCESSES, 10000);
-//        startService(i2);
 
     }
 

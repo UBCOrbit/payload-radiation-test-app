@@ -14,14 +14,13 @@ public class RandomAccessService extends IntentService {
     private static int handleCount = 0;
     private static String TAG = "orbitRandomAccSe";
     private static String RECORD_NAME = "random-access.txt";
-
     public static String ITAG_ACCESSES = "accesses";
-    public static String ITAG_ARRAY = "array";
+    public static String ITAG_ARRAY = "array-size";
     public static String ITAG_DELAY = "delay";
 
     private static final int DEF_ACCESSES = 10000;
     private static final int DEF_ARRAY = 1000000;
-    private static final int DEF_DELAY = 1000;
+    private static final int DEF_DELAY = 6000;
 
     public RandomAccessService() {
         super("RandomAccessService (" + Integer.toString(++instanceCount) + ")");
@@ -42,7 +41,7 @@ public class RandomAccessService extends IntentService {
 
         Log.i(TAG, String.format("callId = %d, errors = %d / %d", callId, errors, accesses));
 
-        String log = String.format("(%d) : e = %d, a = %d, m = %d, d = %d", callId, errors, accesses, array_size, delay);
+        String log = String.format("(%d) : errors = %d, accesses = %d, arr_size = %d, delay = %d", callId, errors, accesses, array_size, delay);
         Intent recordIntent = new Intent(this, FileAppenderService.class);
         recordIntent.putExtra(FileAppenderService.ITAG_CONTENT, log);
         recordIntent.putExtra(FileAppenderService.ITAG_FILENAME, RECORD_NAME);
