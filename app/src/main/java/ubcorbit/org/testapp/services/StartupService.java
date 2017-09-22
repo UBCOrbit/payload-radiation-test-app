@@ -26,11 +26,11 @@ public class StartupService extends Service {
         TestStatusReceiver receiver = new TestStatusReceiver();
         LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(this);
         broadcastManager.registerReceiver(receiver, new IntentFilter(Actions.ALLOC_CHECK_DONE));
-
-        Intent i = new Intent(this, AllocateCheckService.class);
-        i.putExtra(AllocateCheckService.ITAG_DELAY, 1000);
-        i.putExtra(AllocateCheckService.ITAG_ARRAY, 10000);
-        startService(i);
+        broadcastManager.registerReceiver(receiver, new IntentFilter(Actions.INCREMENT_CHECK_DONE));
+        broadcastManager.registerReceiver(receiver, new IntentFilter(Actions.RANDOM_ACCESS_DONE));
+        broadcastManager.registerReceiver(receiver, new IntentFilter(Actions.CARD_READ_DONE));
+        broadcastManager.registerReceiver(receiver, new IntentFilter(Actions.CARD_WRITE_DONE));
+        broadcastManager.registerReceiver(receiver, new IntentFilter(Actions.RAM_FILLER_DONE));
 
     }
 
@@ -53,8 +53,27 @@ public class StartupService extends Service {
 
         @Override
         public void onReceive(Context context, Intent intent) {
+
             Log.i(TAG, "onReceive()");
-            // todo: switch on intent action to restart the appropriate service
+            if (intent.getAction() == null) return;
+
+            switch(intent.getAction()) {
+
+                case Actions.ALLOC_CHECK_DONE:
+                    break;
+                case Actions.INCREMENT_CHECK_DONE:
+                    break;
+                case Actions.RANDOM_ACCESS_DONE:
+                    break;
+                case Actions.CARD_READ_DONE:
+                    break;
+                case Actions.CARD_WRITE_DONE:
+                    break;
+                case Actions.RAM_FILLER_DONE:
+                    break;
+
+            }
+
         }
 
     }
