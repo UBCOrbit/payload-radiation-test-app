@@ -2,7 +2,9 @@ package ubcorbit.org.testapp.services;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import ubcorbit.org.testapp.common.Actions;
 
 import java.util.Random;
 
@@ -45,6 +47,9 @@ public class RandomAccessService extends IntentService {
         recordIntent.putExtra(FileAppenderService.ITAG_CONTENT, log);
         recordIntent.putExtra(FileAppenderService.ITAG_FILENAME, RECORD_NAME);
         startService(recordIntent);
+
+        Intent doneIntent = new Intent(Actions.RANDOM_ACCESS_DONE);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(doneIntent);
 
     }
 
