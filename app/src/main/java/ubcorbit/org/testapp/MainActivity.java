@@ -1,64 +1,31 @@
 package ubcorbit.org.testapp;
 
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
+import android.app.IntentService;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import ubcorbit.org.testapp.services.AllocateCheckService;
+import ubcorbit.org.testapp.services.IncrementService;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "orbitMainActivity";
+    private static final String TAG = "orbitMainAc";
+    private static String RECORD_NAME = "main-activity.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        Log.i(TAG, "onCreate()");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // todo:
-        // launch test manager here
+        Intent i = new Intent(this, IncrementService.class);
+        i.putExtra(IncrementService.ITAG_COUNT, 100000);
+        startService(i);
 
-    }
-
-    private void appendStringToFile(String content, String fileName) {
-
-        if(isExternalStorageWritable()) {
-
-            try {
-
-                File dir = getStorageDir();
-                File file = new File(dir, fileName);
-                try (FileOutputStream stream = new FileOutputStream(file, true)) {
-                    stream.write(("\n" + content).getBytes());
-                }
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                Log.e(TAG, "could not write to file output stream");
-            }
-
-        } else {
-            Log.e(TAG, "external storage is not writeable");
-        }
-
-    }
-
-    /* Checks if external storage is available for read and write */
-    private boolean isExternalStorageWritable() {
-        return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
-    }
-
-    private File getStorageDir() {
-
-        File dir = new File(Environment.getExternalStoragePublicDirectory(
-                Environment.DIRECTORY_DOWNLOADS), "TestApp");
-        if (!dir.mkdirs()) Log.e(TAG, "storage directory not created");
-        return dir;
+        Log.i(TAG, "done");
 
     }
 

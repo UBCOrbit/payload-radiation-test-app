@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="ubcorbit.org.testapp">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
 
@@ -10,7 +11,7 @@
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme">
+            android:theme="@style/Theme.AppCompat.NoActionBar">
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -19,15 +20,35 @@
             </intent-filter>
         </activity>
 
-        <service
-                android:name=".services.MemoryTestService"
-                android:enabled="true"
-                android:exported="true">>
-            <intent-filter>
-                <action android:name="ubcorbit.org.testapp.services.MemoryTestService" />
-            </intent-filter>
-        </service>
+        <service android:name=".services.FileAppenderService"
+                 android:enabled="true"
+                 android:exported="true"/>
 
+        <service android:name=".services.CardReadService"
+                 android:enabled="true"
+                 android:exported="true"/>
+
+        <service android:name=".services.CardWriteService"
+                 android:enabled="true"
+                 android:exported="true"/>
+
+        <service android:name=".services.AllocateCheckService"
+                 android:enabled="true"
+                 android:exported="true"/>
+
+        <service android:name=".services.IncrementService"
+                 android:enabled="true"
+                 android:exported="true"/>
+
+        <service android:name=".services.RandomAccessService"
+                 android:enabled="true"
+                 android:exported="true"/>
+
+        <service android:name=".services.RAMFillerService"
+                 android:enabled="true"
+                 android:exported="true"/>
+
+        <receiver android:name=".MainActivity"/>
     </application>
 
 </manifest>
