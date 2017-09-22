@@ -26,9 +26,7 @@ public class AllocateCheckService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
 
-        Log.i(TAG, "onHandleIntent()");
         int callId = handleCount++;
-
         Log.i(TAG, String.format("onHandleIntent() (%d)", callId));
         int arraySize = (intent.getIntExtra(ITAG_ARRAY, DEF_ARRAY));
         int delay = (intent.getIntExtra(ITAG_DELAY, DEF_DELAY));
@@ -42,7 +40,7 @@ public class AllocateCheckService extends IntentService {
         recordIntent.putExtra(FileAppenderService.ITAG_FILENAME, RECORD_NAME);
         startService(recordIntent);
 
-        Intent doneIntent = new Intent(Actions.RANDOM_ACCESS_DONE);
+        Intent doneIntent = new Intent(Actions.ALLOC_CHECK_DONE);
         LocalBroadcastManager.getInstance(this).sendBroadcast(doneIntent);
 
     }

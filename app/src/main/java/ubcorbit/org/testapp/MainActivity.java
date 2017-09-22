@@ -1,10 +1,12 @@
 package ubcorbit.org.testapp;
 
+import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import ubcorbit.org.testapp.services.AllocateCheckService;
+import ubcorbit.org.testapp.services.IncrementService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +20,12 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent i = new Intent(this, IncrementService.class);
+        i.putExtra(IncrementService.ITAG_COUNT, 100000);
+        startService(i);
+
+        Log.i(TAG, "done");
 
     }
 
