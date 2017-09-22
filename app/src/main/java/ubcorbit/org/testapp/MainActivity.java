@@ -4,8 +4,6 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,8 +11,7 @@ import java.io.FileOutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
-    private int counter = 0;
+    private static final String TAG = "orbitMainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,23 +19,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button testButton = (Button) findViewById(R.id.test_button);
-        testButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                appendStringToInteger("i'm a strong radiation boy", "dontpanic.txt");
-            }
-        });
+        // todo:
+        // launch test manager here
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        appendStringToInteger(Integer.toString(counter++), "dummy.txt");
-    }
-
-    private void appendStringToInteger(String content, String fileName) {
+    private void appendStringToFile(String content, String fileName) {
 
         if(isExternalStorageWritable()) {
 
@@ -53,11 +39,11 @@ public class MainActivity extends AppCompatActivity {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (Exception e) {
-                Log.e(TAG, "something went wrong (check permission)");
+                Log.e(TAG, "could not write to file output stream");
             }
 
         } else {
-            Log.e(TAG, "external storage not writeable");
+            Log.e(TAG, "external storage is not writeable");
         }
 
     }
@@ -71,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         File dir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_DOWNLOADS), "TestApp");
-        if (!dir.mkdirs()) Log.e(TAG, "Directory not created");
+        if (!dir.mkdirs()) Log.e(TAG, "storage directory not created");
         return dir;
 
     }
