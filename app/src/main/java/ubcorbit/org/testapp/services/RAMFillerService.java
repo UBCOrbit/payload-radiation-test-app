@@ -9,7 +9,7 @@ import android.content.Intent;
 public class RAMFillerService extends IntentService {
 
     private static int instanceCount = 0;
-    private static String TAG = "orbitRAMFillerService";
+    private static String TAG = "orbitRAMFillerSe";
 
     public RAMFillerService() {
         super("RAMFillerService (" + Integer.toString(instanceCount++) + ")");

@@ -9,7 +9,7 @@ import android.content.Intent;
 public class CardReadService extends IntentService {
 
     private static int instanceCount = 0;
-    private static String TAG = "orbitCardReadService";
+    private static String TAG = "orbitCardReadSe";
 
     public CardReadService() {
         super("CardReadService (" + Integer.toString(instanceCount++) + ")");

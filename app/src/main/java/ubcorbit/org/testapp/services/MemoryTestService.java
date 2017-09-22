@@ -11,7 +11,7 @@ import java.util.Random;
 public class MemoryTestService extends IntentService {
 
     private static int instanceCount = 0;
-    private static String TAG = "orbitMemTestService";
+    private static String TAG = "orbitMemTestSe";
 
     public MemoryTestService() {
         super("MemoryTestService (" + Integer.toString(instanceCount++) + ")");
