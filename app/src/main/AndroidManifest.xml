@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="ubcorbit.org.testapp">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
@@ -20,35 +21,40 @@
             </intent-filter>
         </activity>
 
+        <receiver android:enabled="true"
+                  android:name="ubcorbit.org.testapp.receivers.BootupReceiver"
+                  android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <service android:name=".services.FileAppenderService"
-                 android:enabled="true"
-                 android:exported="true"/>
+                 android:enabled="true"/>
 
         <service android:name=".services.CardReadService"
-                 android:enabled="true"
-                 android:exported="true"/>
+                 android:enabled="true"/>
 
         <service android:name=".services.CardWriteService"
-                 android:enabled="true"
-                 android:exported="true"/>
+                 android:enabled="true"/>
 
         <service android:name=".services.AllocateCheckService"
-                 android:enabled="true"
-                 android:exported="true"/>
+                 android:enabled="true"/>
 
         <service android:name=".services.IncrementService"
-                 android:enabled="true"
-                 android:exported="true"/>
+                 android:enabled="true"/>
 
         <service android:name=".services.RandomAccessService"
-                 android:enabled="true"
-                 android:exported="true"/>
+                 android:enabled="true"/>
 
         <service android:name=".services.RAMFillerService"
-                 android:enabled="true"
-                 android:exported="true"/>
+                 android:enabled="true"/>
 
-        <receiver android:name=".MainActivity"/>
+        <service android:name=".services.StartupService"/>
+
     </application>
 
 </manifest>

@@ -1,12 +1,8 @@
 package ubcorbit.org.testapp;
 
-import android.app.IntentService;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import ubcorbit.org.testapp.services.AllocateCheckService;
-import ubcorbit.org.testapp.services.IncrementService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,13 +11,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         Log.i(TAG, "onCreate()");
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Log.i(TAG, "done");
+        setContentView(R.layout.activity_main);;
 
     }
 
